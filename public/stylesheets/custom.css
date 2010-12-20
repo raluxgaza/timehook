@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #cff;
+  background: #558DD2;
 }
 
 header {
@@ -247,3 +247,4 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
