@@ -1,0 +1,10 @@
+<h1>Register</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <%= render 'fields', :f => f %>
+  <div class="actions">
+    <%= f.submit "Register" %>  <%= link_to 'Cancel', root_path %>
+  </div>
+<% end %>
+
