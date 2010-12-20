@@ -50,8 +50,8 @@ class User < ActiveRecord::Base
 
   private
     def encrypt_password
-      self.salt = make_salt if new_record?
-      self.encrypt_password = encrypt(password)
+      #self.salt = make_salt if new_record?
+      #self.encrypt_password = encrypt(password)
     end
 
     def encrypt(string)

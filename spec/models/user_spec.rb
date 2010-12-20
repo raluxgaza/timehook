@@ -100,7 +100,7 @@ describe User do
     end
   end
 
-  describe "password encryption" do
+ pending "password encryption" do
 
     before(:each) do
       @user = User.create!(@attr)
