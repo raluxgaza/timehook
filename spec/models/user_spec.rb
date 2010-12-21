@@ -100,7 +100,7 @@ describe User do
     end
   end
 
- pending "password encryption" do
+ describe "password encryption" do
 
     before(:each) do
       @user = User.create!(@attr)
@@ -111,14 +111,14 @@ describe User do
     end
 
     it "should set the encrypted password" do
-      #@user.encrypted_password.should_not be_blank
+      @user.encrypted_password.should_not be_blank
     end
 
     it "should have salt" do
-      #@user.should respond_to :salt
+      @user.should respond_to :salt
     end
 
-    pending "has_password? method" do
+    describe "has_password? method" do
       
       it "should exist" do
         @user.should respond_to(:has_password?)
@@ -134,7 +134,7 @@ describe User do
       end
     end
 
-    pending "authenticate method" do
+    describe "authenticate method" do
 
       it "should exist" do
         User.should respond_to(:authenticate)
