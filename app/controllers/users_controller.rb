@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
 
+  def index
+    #@users = User.find(:all)
+    @title = "All users"
+  end
+
+  def show
+    @user = User.find(params[:id])
+    #@title = User.fullname
+  end
+
   def new
     @user = User.new
     @title = "Register"

@@ -139,7 +139,58 @@ describe User do
       it "should exist" do
         User.should respond_to(:authenticate)
       end
+
+      it "should return nil on email/password mismatch" do
+        User.authenticate(@attr[:email], "wrongpass").should be_nil
+      end
+
+      it "should return nil on email address with no user" do
+        User.authenticate("bar@foo.com", @attr[:password]).should be_nil
+      end
+
+      it "should return the user on email/password match" do
+        User.authenticate(@attr[:email], @attr[:password]).should == @user
+      end
     end
   end
+
+  describe "backoffice users" do
+
+    before(:each) do 
+      @user = User.create!(@attr)
+    end
+
+    describe "admin attribute" do
+
+      it "should be available" do
+        @user.should respond_to :admin
+      end
+
+      it "should not be an admin by default" do
+        @user.should_not be_admin
+      end
+
+      it "should be convertable by an admin" do
+        @user.toggle!(:admin)
+        @user.should be_admin
+      end
+    end
+
+    describe "manager attribute" do
+
+      it "should be available" do
+        @user.should respond_to(:manager)
+      end
+
+      it "should not be a manager by default" do
+        @user.should_not be_manager
+      end
+
+      it "should be convertable by an admin" do
+        @user.toggle!(:manager)
+        @user.should be_manager
+      end
+    end
+  end  
 end
 
