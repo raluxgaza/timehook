@@ -192,5 +192,14 @@ describe User do
       end
     end
   end  
+
+  describe "relationships" do
+
+    it "should have many activities through user_activities" do
+      user_activities = User.create!(@attr)
+      user_activities.should respond_to(:activity)
+    end
+  end
+
 end
 

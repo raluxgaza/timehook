@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
               :confirmation => true,
               :length       => { :within => 6..40 }
 
+  has_many :activity
+
   before_save :encrypt_password
 
   def has_password?(submitted_password)

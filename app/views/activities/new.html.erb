@@ -1,0 +1,19 @@
+<h1>Add new working hours</h1>
+
+<%= form_for(@activity) do |f| %>
+  <div class="field">
+    <%= f.label :entry_date %><br />
+    <%= f.date_select :entry_date %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.time_select :start_time, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= f.time_select :end_time, :prompt => true %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add time" %>
+  </div>
+<% end %>
