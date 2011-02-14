@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :except => [:show, :new, :create]
 
   def index
-    #@users = User.find(:all)
+    @users = User.find(:all)
     @title = "All users"
   end
 
   def show
     @user = User.find(params[:id])
-    #@title = User.fullname
+    @title = @user.full_name
   end
 
   def new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      redirect_to @user, :flash => { :success => "Welcome to Timehook" }
+      redirect_to @user, :flash => { :success => "Welcome to Timehook!" }
     else
       @title = "Register"
       render 'new'
