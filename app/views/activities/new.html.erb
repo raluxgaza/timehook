@@ -1,6 +1,7 @@
-<h1>Add new working hours</h1>
+<h1><%= current_user.full_name.capitalize %>, add new working hours</h1>
 
 <%= form_for(@activity) do |f| %>
+
   <div class="field">
     <%= f.label :entry_date %><br />
     <%= f.date_select :entry_date %>

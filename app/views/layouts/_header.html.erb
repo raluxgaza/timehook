@@ -4,7 +4,6 @@
     <ul>
       <li><%= link_to 'Home', root_path %></li>
       <% if signed_in? %>
-        <li><%= link_to 'Add activity', '#' %></li>
         <li><%= link_to 'Sign out', signout_path %></li>
       <% else %>
         <li><%= link_to 'Register', register_path %></li>

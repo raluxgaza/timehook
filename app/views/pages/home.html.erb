@@ -1,5 +1,25 @@
-<h1>Welcome to Timehook</h1>
-<h3>West London College Timesheet Application</h3>
+<% if signed_in? %>
 
-<%= link_to 'Sign in', signin_path, :class => 'signup_button round' %>
+  <table class="front" summary="For signed-in users">
+    <tr>
+      <td>
+        <%= link_to 'Add new hours', '#', :class => 'signup_button round' %>
+      </td>
+      <td>
+        <%= link_to 'View past hours', '#', :class => 'signup_button round' %>
+      </td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Profile', '#', :class => 'signup_button round' %></td>
+    </tr>
+  </table>
+
+<% else %>
+
+  <h1>Welcome to Timehook</h1>
+  <h3>West London College Timesheet Application</h3>
+
+  <%= link_to 'Sign in', signin_path, :class => 'signup_button round' %>
+
+<% end %>
 

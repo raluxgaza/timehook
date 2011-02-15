@@ -13,7 +13,7 @@ class ActivitiesController < ApplicationController
 
   # Add a new user activity
   def create
-    @activity = Activity.new(params[:user_activity])
+    @activity = Activity.new(params[:activity])
     if @activity.save
       # let user know activity was saved correctly
     else

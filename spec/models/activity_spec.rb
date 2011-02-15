@@ -4,7 +4,7 @@ describe Activity do
 
   before(:each) do
     @attr = {
-      :entry_date => Date.today, :start_time => '10:00', :end_time => '17:00' 
+      :entry_date => Date.today, :start_time => '10:00', :end_time => '17:00'
     }
   end
 
@@ -47,7 +47,7 @@ describe Activity do
 
   describe "relationships" do
 
-    it "should have many activities through user_activity" do
+    it "should belong to user" do
       user_activity = Activity.new(@attr)
       user_activity.should respond_to(:user)
     end
