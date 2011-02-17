@@ -15,14 +15,16 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      # let user know activity was saved correctly
+      flash[:success] = "Working time added successfully."
     else
-      # display error that stopped creation.
+      @title = "Record working hours"
+      render 'new'
     end
   end
 
   def show
     @title = "Show working hours"
+    @user_activities = Activity.find(:all)
   end
 
   def delete

@@ -1,18 +1,22 @@
 <h1><%= current_user.full_name.capitalize %>, add new working hours</h1>
 
 <%= form_for(@activity) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
 
   <div class="field">
     <%= f.label :entry_date %><br />
-    <%= f.date_select :entry_date %>
+    <%= f.date_select :entry_date, :date_separator => '-' %>
   </div>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
   <div class="field">
     <%= f.label :start_time %><br />
-    <%= f.time_select :start_time, :prompt => true %>
+    <%= f.text_field :start_time %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br />
-    <%= f.time_select :end_time, :prompt => true %>
+    <%= f.text_field :end_time %>
   </div>
   <div class="actions">
     <%= f.submit "Add time" %>

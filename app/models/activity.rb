@@ -13,7 +13,7 @@
 
 class Activity < ActiveRecord::Base
 
-  attr_accessible :entry_date, :start_time, :end_time
+  attr_accessible :entry_date, :start_time, :end_time, :user_id
 
   time_regex = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/
 
