@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate
   
   def index
-    @activities = Activity.find(params[:id])
+    @activities = Activity.find(:all)
     @title = "All activities"
   end
 
@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      flash[:success] = "Working time added successfully."
+      redirect_to activities_path, :flash => { :success => "Time added successfully" }
     else
       @title = "Record working hours"
       render 'new'

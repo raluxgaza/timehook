@@ -33,7 +33,7 @@ class Activity < ActiveRecord::Base
 
     if((total_min >= 60) && (total_min < 120))
       total_hours += 1
-      total_min -= 60
+      total_min - 60
     end
     
     return "#{total_hours} hours, #{total_min} minutes"

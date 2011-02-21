@@ -1,0 +1,8 @@
+<h1><%= current_user.full_name %>'s working hours</h1>
+
+<% @activities.each do |activity| %>
+  Date: <%= activity.entry_date.to_s(:long) %> <br />
+  Start Time: <%= activity.start_time %> <br />
+  End Time: <%= activity.end_time %><br />
+  Duration: <%= Activity.duration(activity.start_time, activity.end_time) %> <br /><br />
+<% end %>
