@@ -19,6 +19,7 @@
     <%= f.text_field :end_time %>
   </div>
   <div class="actions">
-    <%= f.submit "Add time" %>
+    <%= f.submit "Add time" %> | 
+    <%= link_to 'View past times', activities_path %>
   </div>
 <% end %>

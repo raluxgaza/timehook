@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate
   
   def index
-    @activities = Activity.find(:all)
+    @activities = Activity.find(:all, :conditions => { :user_id => current_user })
     @title = "All activities"
   end
 

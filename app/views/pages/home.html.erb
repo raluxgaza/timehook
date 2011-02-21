@@ -3,14 +3,14 @@
   <table class="front" summary="For signed-in users">
     <tr>
       <td>
-        <%= link_to 'Add new hours', 'activities/new', :class => 'signup_button round' %>
+        <%= link_to 'Add new hours', new_activity_path, :class => 'signup_button round' %>
       </td>
       <td>
         <%= link_to 'View past hours', activities_path, :class => 'signup_button round' %>
       </td>
     </tr>
     <tr>
-      <td><%= link_to 'Profile', '#', :class => 'signup_button round' %></td>
+      <td><%= link_to 'Profile', user_path(current_user), :class => 'signup_button round' %></td>
     </tr>
   </table>
 

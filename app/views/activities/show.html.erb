@@ -4,5 +4,5 @@
   Date: <%= activity.entry_date.to_s(:long) %> <br />
   Start Time: <%= activity.start_time %> <br />
   End Time: <%= activity.end_time %><br />
-  Duration: 7hours 30minutes <br /><br />
+  Duration: <%= Activity.duration(activity.start_time, activity.end_time) %><br /><br />
 <% end %>

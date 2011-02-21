@@ -27,6 +27,7 @@ class Activity < ActiveRecord::Base
 
   belongs_to :user
 
+
   def self.duration(s_time, e_time)
     total_hours = (Time.parse(e_time).hour - Time.parse(s_time).hour)
     total_min = (Time.parse(s_time).min + Time.parse(e_time).min)
@@ -38,4 +39,30 @@ class Activity < ActiveRecord::Base
     
     return "#{total_hours} hours, #{total_min} minutes"
   end
+
+  # user is user's id
+  # Usage
+  #   Activity.total_duration(1) # total_working_hours, total_working_minutes
+  def self.total_duration(user)
+    working_hour = 0
+    working_min = 0
+    user_activities = Activity.find(:all, :conditions => {:user_id => user})
+
+    user_activities.each do |activity|
+      user_duration = Activity.duration(activity.start_time, activity.end_time)
+      working_hour += user_duration.split[0].to_i
+      working_min += user_duration.split[2].to_i
+    end
+
+    hours_in_minute = working_min / 60
+
+    if hours_in_minute >= 1
+      working_hour += hours_in_minute
+      remainder_min = working_min % 60
+      return "#{working_hour} hours, #{remainder_min} minutes"
+    else
+      "#{working_hour} hours, #{working_min} minutes"
+    end
+  end
+  
 end
