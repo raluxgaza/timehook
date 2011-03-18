@@ -1,9 +1,32 @@
-<h1><%= current_user.full_name %>'s working hours</h1>
+<h4>
+  <% if (params[:from_date] && params[:to_date] == "") %>
+    All <%= current_user.full_name %>'s working hours 
+  <% else %>
+    <%= current_user.full_name.capitalize %>'s working hours between<br /><br />
+    <b><%= @f_date %></b> 
+    and <b><%= @t_date %></b>
+  <% end %>
+</h3>
 
-<% @activities.each do |activity| %>
-  Date: <%= activity.entry_date.to_s(:long) %> <br />
-  Start Time: <%= activity.start_time %> <br />
-  End Time: <%= activity.end_time %><br />
-  Duration: <%= Activity.duration(activity.start_time, activity.end_time) %> <br /><br />
-<% end %>
 
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Duration</th>
+  </tr>
+
+  <% @user_activities.each do |activity|%>
+    <tr>   
+      <td><%= activity.entry_date.to_s(:long) %></td>
+      <td><%= activity.start_time %></td> 
+      <td><%= activity.end_time %></td>
+      <td><%= Activity.duration(activity.start_time, activity.end_time) %></td>
+      <td>Approved</td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add new working hours", new_activity_path %>

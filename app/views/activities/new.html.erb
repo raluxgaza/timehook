@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :entry_date %><br />
-    <%= f.date_select :entry_date, :date_separator => '-' %>
+    <%= f.date_select :entry_date %>
   </div>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -20,6 +20,6 @@
   </div>
   <div class="actions">
     <%= f.submit "Add time" %> | 
-    <%= link_to 'View past times', activities_path %>
+    <%= link_to 'View past times', date_path %>
   </div>
 <% end %>

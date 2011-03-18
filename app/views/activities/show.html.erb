@@ -1,10 +1,20 @@
 <h1><%= current_user.full_name %>'s working hours</h1>
 
-<% @user_activities.each do |activity| %>
-  <div class="signup_button">
-    Date: <%= activity.entry_date.to_s(:long) %> <br />
-    Start Time: <%= activity.start_time %> <br />
-    End Time: <%= activity.end_time %><br />
-    Duration: <%= Activity.duration(activity.start_time, activity.end_time) %><br /><br />
-  </div>
-<% end %>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Duration</th>
+  </tr>
+
+  <% @user_activities.each do |activity| %>
+    <tr>    
+      <td><%= activity.entry_date.to_s(:long) %></td>
+      <td><%= activity.start_time %></td> 
+      <td><%= activity.end_time %></td>
+      <td><%= Activity.duration(activity.start_time, activity.end_time) %></td>
+    </tr>
+  <% end %>
+</table>
+

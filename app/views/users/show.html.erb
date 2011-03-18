@@ -1,7 +1,15 @@
-<table class="profile" summary="Profile Information">
-  <tr>
-    <td class="main">
-      <h1><%= @user.full_name %></h1>      
-    </td>
-  </tr>
-</table>
+<%= form_tag('activities', :method => :get) do %>
+  <table class="profile" summary="Profile Information">
+    <tr>
+      <td class="main">
+        <h1>
+          <%= @user.full_name %><br />
+          <a href="/activities"><%= Activity.total_duration(@user.id) %></a>
+        </h1>      
+      </td>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :from_date, "" %>
+      <%= hidden_field_tag :to_date, "" %>
+    </tr>
+  </table>
+<% end %>

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110214122631
+# Schema version: 20110215172200
 #
 # Table name: activities
 #
@@ -9,6 +9,7 @@
 #  end_time   :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 class Activity < ActiveRecord::Base
@@ -43,10 +44,15 @@ class Activity < ActiveRecord::Base
   # user is user's id
   # Usage
   #   Activity.total_duration(1) # total_working_hours, total_working_minutes
-  def self.total_duration(user)
+  def self.total_duration(user, from_date="", to_date="")
     working_hour = 0
     working_min = 0
-    user_activities = Activity.find(:all, :conditions => {:user_id => user})
+
+    if((from_date && to_date) == "")
+      user_activities = Activity.find(:all, :conditions => {:user_id => user})
+    else
+      user_activities = Activity.find(:all, :conditions => ["user_id = ? and entry_date between ? and ?", user, from_date, to_date])
+    end
 
     user_activities.each do |activity|
       user_duration = Activity.duration(activity.start_time, activity.end_time)
@@ -64,5 +70,4 @@ class Activity < ActiveRecord::Base
       "#{working_hour} hours, #{working_min} minutes"
     end
   end
-  
 end

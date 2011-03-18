@@ -1,0 +1,22 @@
+<h1>Choose a date range to view working hours</h1>
+
+<%= form_tag(:controller => 'activities', :action => 'summary', :method => :get) do %>
+
+  <div class="field">
+    <label for="from_date">From</label><br />
+    <%= select_date Date.today.months_ago(1), 
+        :prefix => :from_date, :date_separator => '-' 
+    %><br />
+  </div>
+
+  <%= hidden_field_tag :user_id, current_user.id %>
+
+  <div class="field">
+    <label for="to_date">To</label><br />
+    <%= select_date Date.today, :prefix => :to_date, :date_separator => '-' %><br /><br />
+  </div>
+
+  <div class="actions">
+    <%= submit_tag 'Find working hours' %>
+  </div>
+<% end %>
