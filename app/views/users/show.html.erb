@@ -3,8 +3,10 @@
     <tr>
       <td class="main">
         <h1>
-          <%= @user.full_name %><br />
-          <a href="/activities"><%= Activity.total_duration(@user.id) %></a>
+          <%= @user.full_name %><br /><br />
+          <%= link_to Activity.total_duration(@user.id),
+              :controller => "activities",
+              :action => "index" %>
         </h1>      
       </td>
       <%= hidden_field_tag :user_id, current_user.id %>

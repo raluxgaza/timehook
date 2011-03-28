@@ -1,5 +1,5 @@
-<h4>
-  <% if (params[:from_date] && params[:to_date] == "") %>
+<h3>
+  <% if (params[:from_date] == nil && params[:to_date] == nil) %>
     All <%= current_user.full_name %>'s working hours 
   <% else %>
     <%= current_user.full_name.capitalize %>'s working hours between<br /><br />

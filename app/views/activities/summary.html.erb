@@ -1,23 +1,24 @@
 
 <h1>
-  <em> <%= Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, 
-    params[:from_date][:day].to_i).to_s(:long) %> - 
-  <%= Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, 
-  params[:to_date][:day].to_i).to_s(:long) %> </em>
+  <em> 
+    <%= Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, 
+        params[:from_date][:day].to_i).to_s(:long) %> - 
+    <%= Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, 
+        params[:to_date][:day].to_i).to_s(:long) %> 
+  </em>
 </h1>
 
-<%= hidden_field_tag :from_date, params[:from_date] %>
-<%= hidden_field_tag :to_date, params[:to_date] %>
+<br />
 
-<%= summary = @summary_hours.to_s %>
 <h2>
-  
+  <%= current_user.full_name.capitalize %>
 
-<%= link_to  current_user.full_name.capitalize.to_s + " " + summary ,
+  <br />
+
+  <%= link_to @summary_hours.to_s,
     :controller => "activities",
     :action => "index",
     :from_date => params[:from_date],
     :to_date => params[:to_date] %>
-<br />
 </h2>
 

@@ -2,12 +2,16 @@ class ActivitiesController < ApplicationController
   before_filter :authenticate
 
   def index
-    f_date = Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, params[:from_date][:day].to_i)
-    t_date = Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, params[:to_date][:day].to_i)
+    if((params[:from_date] != nil) && (params[:to_date] != nil))
+      f_date = Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, params[:from_date][:day].to_i) 
+      t_date = Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, params[:to_date][:day].to_i) 
 
-    @summary_hours = Activity.find(:all, :conditions => ["user_id = ? and entry_date between ? and ? ", 
+      @summary_hours = Activity.find(:all, :conditions => ["user_id = ? and entry_date between ? and ? ", 
                                      current_user, f_date, t_date], :order => "entry_date asc")
-
+    else 
+      @summary_hours = Activity.find(:all, :conditions => ["user_id = ?", current_user],
+                                     :order => "entry_date asc")
+    end
     @title = "Users activities"
   end
 
