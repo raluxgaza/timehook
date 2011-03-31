@@ -1,8 +1,8 @@
 <h3>
   <% if (params[:from_date] == nil && params[:to_date] == nil) %>
-    All <%= current_user.full_name %>'s working hours 
+    All <b><%= current_user.full_name %>'s</b> working hours 
   <% else %>
-    <%= current_user.full_name.capitalize %>'s working hours between<br /><br />
+    <b><%= current_user.full_name.capitalize %>'s</b> working hours between<br /><br />
     <b><%= Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, params[:from_date][:day].to_i).to_s(:long) %></b> 
     and <b><%= Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, params[:to_date][:day].to_i).to_s(:long) %></b>
   <% end %>
