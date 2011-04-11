@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create]
+  before_filter :correct_user, :only => [:edit, :update]
 
   def index
     @users = User.find(:all)
@@ -26,5 +27,26 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  ## Here are where the correct_user accesses
+  def edit
+    @title = "Edit user"
+  end
+  
+  def update
+    if @user.update_attributes(params[:user])
+      redirect_to @user, :flash => { :success => "Profile updated" }
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
+  end
+
+  private
+    
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 end
 
