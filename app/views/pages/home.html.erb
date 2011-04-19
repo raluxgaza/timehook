@@ -1,5 +1,9 @@
 <% if signed_in? %>
 
+  <center>
+    <h1><b>Timesheets are due on <%= Date.tomorrow.to_s(:long) %></b></h1>
+  </center>
+
   <table class="front" summary="For signed-in users">
     <tr>
       <td>
@@ -13,8 +17,10 @@
 
 <% else %>
 
-  <h1>Welcome to Timehook</h1>
-  <h3>West London College Timesheet Application</h3>
+  <center>
+    <h1>Welcome to Timehook</h1>
+    <h3>West London College Timesheet Application</h3>
+  </center>
 
   <%= link_to 'Sign in', signin_path, :class => 'signup_button round' %>
 
