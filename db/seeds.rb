@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+role_collection = {
+  :hr => 'Human Resource',
+  :lm => 'Line Manger',
+  :tm => 'Team Member',
+  :admin => 'Administrator'
+}
+
+role_collection.each do |key, value|
+  @a_role = { :name => value }
+  Role.create(@a_role)
+end

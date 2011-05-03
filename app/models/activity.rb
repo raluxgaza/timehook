@@ -1,15 +1,15 @@
 # == Schema Information
-# Schema version: 20110215172200
+# Schema version: 20110503132616
 #
 # Table name: activities
 #
-#  id         :integer         not null, primary key
+#  id         :integer(4)      not null, primary key
 #  entry_date :date
 #  start_time :string(255)
 #  end_time   :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
+#  user_id    :integer(4)
 #
 
 class Activity < ActiveRecord::Base
@@ -18,7 +18,7 @@ class Activity < ActiveRecord::Base
 
   time_regex = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/
 
-  validates :entry_date, :presence => true
+  validates :entry_date, :presence => true, :uniqueness => { :case_sensitive => false }
 
   validates :start_time, :format => { :with => time_regex },
             :presence => true

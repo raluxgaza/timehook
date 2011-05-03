@@ -24,10 +24,10 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      redirect_to date_path, :flash => { :success => "Time added successfully" }
+      render 'new', :flash => { :success => "Time added successfully" }
     else
       @title = "Record working hours"
-      render 'new'
+      render 'new', :flash => { :error => "There was a problem please try again" }
     end
   end
 
