@@ -1,0 +1,25 @@
+<h1>Edit activity</h1>
+
+<%= form_for(@activity) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  <div class="field">
+    <%= f.label :entry_date %></br />
+    <%= f.date_select :entry_date %>
+  </div>
+
+  <div class="field">
+    Start Time: <%= f.text_field :start_time %>
+  </div>
+
+  <div class="field">
+    End Time: <%= f.text_field :end_time %>
+  </div>
+
+  <% activity = @activity %>
+  <div class="actions">
+    <%= link_to 'Delete', activity, :method => :delete, :confirm => "Are You sure?" %> | 
+    <%= link_to 'Cancel', '#' %> |
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

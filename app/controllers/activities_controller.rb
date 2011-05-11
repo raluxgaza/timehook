@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
   before_filter :authenticate
+  before_filter :authorized_user, :only => [:edit, :update, :destory]
 
   def index
     if((params[:from_date] != nil) && (params[:to_date] != nil))
@@ -24,10 +25,24 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      render 'new', :flash => { :success => "Time added successfully" }
+      #redirect_to date_path, :flash => { :success => "Time added successfully" }
+      redirect_to new_activity_path, :flash => { :success => "Working time recorded successfully" }
     else
       @title = "Record working hours"
-      render 'new', :flash => { :error => "There was a problem please try again" }
+      render 'new', :flash => { :fail => "There was an error please try again" }
+    end
+  end
+
+  def edit
+    @title = "Edit activity"
+  end
+
+  def update
+    if @activity.update_attributes(params[:activity])
+      redirect_to activity_path, :flash => { :success => "Working time updated successfully" }
+    else
+      @title = "Edit activity"
+      render 'edit'
     end
   end
 
@@ -51,6 +66,15 @@ class ActivitiesController < ApplicationController
     @title = "Date range"
   end
 
-  def delete
+  def destroy
+    @activity.destroy
+    redirect_to root_path, :flash => { :success => "Working time removed successfully" }
   end
+
+  private
+
+    def authorized_user
+      @activity = Activity.find(params[:id])
+      redirect_to root_path unless current_user?(@activity.user)
+    end
 end

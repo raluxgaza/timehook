@@ -2,7 +2,7 @@ Timehook::Application.routes.draw do
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :activities 
+  resources :activities, :only => [:create, :destory, :edit, :update]
 
   root :to => "pages#home"
 

@@ -15,7 +15,7 @@
         <% end %>
         <%= yield %>
       </section>
-      <%= debug(params) if Rails.env.test? %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>

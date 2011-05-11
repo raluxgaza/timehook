@@ -8,13 +8,13 @@
     <th>Duration</th>
   </tr>
 
-  <% @user_activities.each do |activity| %>
-    <tr>    
-      <td><%= activity.entry_date.to_s(:long) %></td>
-      <td><%= activity.start_time %></td> 
-      <td><%= activity.end_time %></td>
-      <td><%= Activity.duration(activity.start_time, activity.end_time) %></td>
-    </tr>
-  <% end %>
+  <tr>    
+    <td><%= @user_activities.entry_date.to_s(:long) %></td>
+    <td><%= @user_activities.start_time %></td> 
+    <td><%= @user_activities.end_time %></td>
+    <td><%= Activity.duration(@user_activities.start_time, @user_activities.end_time) %></td>
+  </tr>
 </table>
+
+<%= link_to 'View working times', :controller => 'activities', :action => 'index' %>
 

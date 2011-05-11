@@ -25,6 +25,7 @@
       <td><%= activity.end_time %></td>
       <td><%= Activity.duration(activity.start_time, activity.end_time) %></td>
       <td><font color="green">Approved by Dan North</font></td>
+      <td><%= link_to 'Edit', edit_activity_path(activity.id) %></td>
     </tr>
   <% end %>
 </table>
