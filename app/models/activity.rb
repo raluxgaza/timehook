@@ -16,6 +16,10 @@ class Activity < ActiveRecord::Base
 
   attr_accessible :entry_date, :start_time, :end_time, :user_id
 
+  ### paginate specific code
+  cattr_reader :per_page
+  @@per_page = 10
+
   time_regex = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/
 
   validates :entry_date, :presence => true, :uniqueness => { :case_sensitive => false }
