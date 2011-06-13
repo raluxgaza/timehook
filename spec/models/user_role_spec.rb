@@ -15,6 +15,12 @@ describe UserRole do
     empty_user.should_not be_valid
   end
 
+  it "should require unique user_id" do
+    UserRole.create!(@attr)
+    duplicate_user = UserRole.new(@attr)
+    duplicate_user.should_not be_valid
+  end
+
   it "should reject empty role_id" do
     empty_role = UserRole.new(@attr.merge(:role_id => ""))
     empty_role.should_not be_valid
@@ -23,12 +29,12 @@ describe UserRole do
   describe "relationships" do
 
     it "user_id should belong to user" do
-      user_relationship = UserRole.new(@attr)
+      user_relationship = UserRole.create!(@attr)
       user_relationship.should respond_to(:user)
     end
 
     it "role_id should belong to role" do
-      role_relationship = UserRole.new(@attr)
+      role_relationship = UserRole.create!(@attr)
       role_relationship.should respond_to(:role)
     end
   end

@@ -12,7 +12,9 @@
 
 class UserRole < ActiveRecord::Base
   
-  validates :user_id,   :presence => true
+  validates :user_id, :presence => true,
+            :uniqueness => true
+
   validates :role_id, :presence => true
 
   belongs_to :user
