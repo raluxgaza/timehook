@@ -28,8 +28,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(params[:activity])
     if @activity.save
-      #redirect_to date_path, :flash => { :success => "Time added successfully" }
-      redirect_to new_activity_path, :flash => { :success => "Working time recorded successfully" }
+      redirect_to new_activity_path, :flash => { :success => "Working hours for recorded successfully" }
     else
       @title = "Record working hours"
       render 'new', :flash => { :fail => "There was an error please try again" }
@@ -58,9 +57,6 @@ class ActivitiesController < ApplicationController
     @title = "Summary of working hours"
     @f_date = Date.civil(params[:from_date][:year].to_i, params[:from_date][:month].to_i, params[:from_date][:day].to_i)
     @t_date = Date.civil(params[:to_date][:year].to_i, params[:to_date][:month].to_i, params[:to_date][:day].to_i) 
-
-    $from_date = @f_date
-    $to_date = @t_date
 
     @summary_hours = Activity.total_duration(current_user, @f_date, @t_date)
   end
