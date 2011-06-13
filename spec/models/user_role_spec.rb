@@ -19,4 +19,17 @@ describe UserRole do
     empty_role = UserRole.new(@attr.merge(:role_id => ""))
     empty_role.should_not be_valid
   end
+
+  describe "relationships" do
+
+    it "user_id should belong to user" do
+      user_relationship = UserRole.new(@attr)
+      user_relationship.should respond_to(:user)
+    end
+
+    it "role_id should belong to role" do
+      role_relationship = UserRole.new(@attr)
+      role_relationship.should respond_to(:role)
+    end
+  end
 end
