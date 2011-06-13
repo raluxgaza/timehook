@@ -3,9 +3,9 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: timehook #db/development.sqlite3
+  database: timehook 
   username: root
-  password: foxdaghost
+  password: password101
   pool: 5
   timeout: 5000
 
